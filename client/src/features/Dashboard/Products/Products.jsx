@@ -8,7 +8,14 @@ import { FaEye } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function Products() {
-    const [productData, setProductData] = useState({ name: '', price: '', description: '', stock: '', category: '' });
+    const [productData, setProductData] = useState({
+        name: '',
+        price: '',
+        description: '',
+        stock: '',
+        category: '',
+        imageUrl: ' ',
+    });
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [editOpen, setEditOpen] = useState(false);
@@ -198,6 +205,12 @@ function Products() {
                                 </Option>
                             ))}
                         </Select>
+                        <Input
+                            name='imageUrl'
+                            placeholder='Url de la imagen'
+                            value={productData.imageUrl}
+                            onChange={handleChange}
+                        />
                         <Button type='submit'>Agregar</Button>
                     </form>
                 </ModalDialog>
