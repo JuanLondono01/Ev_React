@@ -1,5 +1,5 @@
 import { addUser, deleteUser, getUsers } from './api/services.js';
-import { Button, Input, Modal, ModalDialog, ModalClose, Typography, Table } from '@mui/joy';
+import { Button, Input, Modal, ModalDialog, ModalClose, Typography, Table, Select, Option } from '@mui/joy';
 import React, { useEffect, useState } from 'react';
 import { CiEdit, CiTrash } from 'react-icons/ci';
 import { FaEye } from 'react-icons/fa';
@@ -121,7 +121,7 @@ function Users() {
             </div>
 
             {/* Tabla de usuarios para pantallas grandes */}
-            <div className="overflow-x-auto hidden sm:block">
+            <div className='overflow-x-auto hidden sm:block'>
                 <Table variant='outlined' size='lg' stripe='odd' hoverRow stickyHeader className='min-w-full'>
                     <thead>
                         <tr>
@@ -168,29 +168,14 @@ function Users() {
             </div>
 
             {/* Tabla para móviles */}
-            <div className="sm:hidden mt-6">
+            <div className='sm:hidden mt-6'>
                 {users.map((user) => (
-                    <div key={user.id} className="flex justify-between items-center border-t py-4">
+                    <div key={user.id} className='flex justify-between items-center border-t py-4'>
                         <span>{user.fullName}</span>
-                        <div className="flex gap-4">
-                            <FaEye
-                                size={24}
-                                color="green"
-                                cursor="pointer"
-                                onClick={() => handleViewClick(user)}
-                            />
-                            <CiEdit
-                                color="blue"
-                                size={24}
-                                cursor="pointer"
-                                onClick={() => handleEditClick(user.id)}
-                            />
-                            <CiTrash
-                                color="red"
-                                size={24}
-                                cursor="pointer"
-                                onClick={() => handleDelete(user.id)}
-                            />
+                        <div className='flex gap-4'>
+                            <FaEye size={24} color='green' cursor='pointer' onClick={() => handleViewClick(user)} />
+                            <CiEdit color='blue' size={24} cursor='pointer' onClick={() => handleEditClick(user.id)} />
+                            <CiTrash color='red' size={24} cursor='pointer' onClick={() => handleDelete(user.id)} />
                         </div>
                     </div>
                 ))}
@@ -224,18 +209,28 @@ function Users() {
                             value={userData.password}
                             onChange={handleChange}
                         />
-                        <Input
+                        <Select
                             name='roleId'
-                            placeholder='Rol'
+                            placeholder="Rol"
                             value={userData.roleId}
-                            onChange={handleChange}
-                        />
-                        <Input
+                            onChange={(event, newValue) => setUserData((prev) => ({ ...prev, roleId: newValue }))}>
+                            {roles.map((role) => (
+                                <Option key={role.id} value={role.id}>
+                                    {role.name}
+                                </Option>
+                            ))}
+                        </Select>
+                        <Select
                             name='companyId'
                             placeholder='Compañía'
                             value={userData.companyId}
-                            onChange={handleChange}
-                        />
+                            onChange={(event, newValue) => setUserData((prev) => ({ ...prev, companyId: newValue }))}>
+                            {companies.map((comp) => (
+                                <Option key={comp.id} value={comp.id}>
+                                    {comp.name}
+                                </Option>
+                            ))}
+                        </Select>
                         <Button type='submit'>Agregar Usuario</Button>
                     </form>
                 </ModalDialog>
@@ -251,10 +246,18 @@ function Users() {
                                 Detalles de {viewUser.fullName}
                             </Typography>
                             <div className='mt-4'>
-                                <p><strong>ID:</strong> {viewUser.id}</p>
-                                <p><strong>Correo:</strong> {viewUser.email}</p>
-                                <p><strong>Rol:</strong> {viewUser.role.name}</p>
-                                <p><strong>Compañía:</strong> {viewUser.company.name}</p>
+                                <p>
+                                    <strong>ID:</strong> {viewUser.id}
+                                </p>
+                                <p>
+                                    <strong>Correo:</strong> {viewUser.email}
+                                </p>
+                                <p>
+                                    <strong>Rol:</strong> {viewUser.role.name}
+                                </p>
+                                <p>
+                                    <strong>Compañía:</strong> {viewUser.company.name}
+                                </p>
                             </div>
                         </>
                     )}

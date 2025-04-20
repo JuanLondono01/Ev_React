@@ -1,14 +1,16 @@
+import { getCategories } from '@/features/Dashboard/Categories/api/services.js';
 import { addProduct, deleteProduct, getProducts } from '@/features/Dashboard/Products/api/services.js';
 import EditProductModal from '@/features/Dashboard/Products/Components/EditProduct.jsx';
-import { Button, Input, Modal, ModalDialog, ModalClose, Typography, Table } from '@mui/joy';
+import { Button, Input, Modal, ModalDialog, ModalClose, Typography, Table, Select, Option } from '@mui/joy';
 import React, { useEffect, useState } from 'react';
 import { CiEdit, CiTrash } from 'react-icons/ci';
-import { FaEye } from "react-icons/fa";
+import { FaEye } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function Products() {
     const [productData, setProductData] = useState({ name: '', price: '', description: '', stock: '', category: '' });
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
     const [currentProductId, setCurrentProductId] = useState(null);
@@ -19,21 +21,27 @@ function Products() {
         setProductData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const fetchCategories = async () => {
+        const response = await getCategories();
+        setCategories(response.data.categories);
+    };
+
     const fetchProducts = async () => {
         const response = await getProducts();
-        
+
         setProducts(response.data.products);
     };
 
     useEffect(() => {
         fetchProducts();
+        fetchCategories();
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await addProduct(productData);
-            
+
             if (response.status === 201) {
                 Swal.fire({
                     title: 'Producto agregado con éxito',
@@ -95,7 +103,7 @@ function Products() {
             </div>
 
             {/* Tabla de productos para pantallas grandes */}
-            <div className="overflow-x-auto hidden sm:block">
+            <div className='overflow-x-auto hidden sm:block'>
                 <Table variant='outlined' size='lg' stripe='odd' hoverRow stickyHeader className='min-w-full'>
                     <thead>
                         <tr>
@@ -144,29 +152,19 @@ function Products() {
             </div>
 
             {/* Tabla para móviles con solo el nombre y un ícono de ojo */}
-            <div className="sm:hidden mt-6">
+            <div className='sm:hidden mt-6'>
                 {products.map((product) => (
-                    <div key={product.id} className="flex justify-between items-center border-t py-4">
+                    <div key={product.id} className='flex justify-between items-center border-t py-4'>
                         <span>{product.name}</span>
-                        <div className="flex gap-4">
-                            <FaEye
-                                size={24}
-                                color="green"
-                                cursor="pointer"
-                                onClick={() => handleViewClick(product)}
-                            />
+                        <div className='flex gap-4'>
+                            <FaEye size={24} color='green' cursor='pointer' onClick={() => handleViewClick(product)} />
                             <CiEdit
-                                color="blue"
+                                color='blue'
                                 size={24}
-                                cursor="pointer"
+                                cursor='pointer'
                                 onClick={() => handleEditClick(product.id)}
                             />
-                            <CiTrash
-                                color="red"
-                                size={24}
-                                cursor="pointer"
-                                onClick={() => handleDelete(product.id)}
-                            />
+                            <CiTrash color='red' size={24} cursor='pointer' onClick={() => handleDelete(product.id)} />
                         </div>
                     </div>
                 ))}
@@ -189,12 +187,17 @@ function Products() {
                             onChange={handleChange}
                         />
                         <Input name='stock' placeholder='Stock' value={productData.stock} onChange={handleChange} />
-                        <Input
+                        <Select
                             name='category'
                             placeholder='Categoría'
                             value={productData.category}
-                            onChange={handleChange}
-                        />
+                            onChange={(event, newValue) => setProductData((prev) => ({ ...prev, category: newValue }))}>
+                            {categories.map((cat) => (
+                                <Option key={cat.id} value={cat.id}>
+                                    {cat.name}
+                                </Option>
+                            ))}
+                        </Select>
                         <Button type='submit'>Agregar</Button>
                     </form>
                 </ModalDialog>
@@ -210,11 +213,21 @@ function Products() {
                                 Detalles de {viewProduct.name}
                             </Typography>
                             <div className='mt-4'>
-                                <p><strong>ID:</strong> {viewProduct.id}</p>
-                                <p><strong>Precio:</strong> {viewProduct.price}</p>
-                                <p><strong>Descripción:</strong> {viewProduct.description}</p>
-                                <p><strong>Stock:</strong> {viewProduct.stock}</p>
-                                <p><strong>Categoría:</strong> {viewProduct.category?.name}</p>
+                                <p>
+                                    <strong>ID:</strong> {viewProduct.id}
+                                </p>
+                                <p>
+                                    <strong>Precio:</strong> {viewProduct.price}
+                                </p>
+                                <p>
+                                    <strong>Descripción:</strong> {viewProduct.description}
+                                </p>
+                                <p>
+                                    <strong>Stock:</strong> {viewProduct.stock}
+                                </p>
+                                <p>
+                                    <strong>Categoría:</strong> {viewProduct.category?.name}
+                                </p>
                             </div>
                         </>
                     )}

@@ -21,6 +21,8 @@ function Categories() {
 
     const fetchCategories = async () => {
         const response = await getCategories();
+        console.log(response);
+        
         setCategories(response.data.categories);
     };
 
