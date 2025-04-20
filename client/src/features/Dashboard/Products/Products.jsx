@@ -13,7 +13,7 @@ function Products() {
         price: '',
         description: '',
         stock: '',
-        category: '',
+        categoryId: '',
         imageUrl: ' ',
     });
     const [products, setProducts] = useState([]);
@@ -35,7 +35,8 @@ function Products() {
 
     const fetchProducts = async () => {
         const response = await getProducts();
-
+        console.log(response.data.products);
+        
         setProducts(response.data.products);
     };
 
@@ -47,6 +48,7 @@ function Products() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            
             const response = await addProduct(productData);
 
             if (response.status === 201) {
@@ -197,8 +199,8 @@ function Products() {
                         <Select
                             name='category'
                             placeholder='Categoría'
-                            value={productData.category}
-                            onChange={(event, newValue) => setProductData((prev) => ({ ...prev, category: newValue }))}>
+                            value={productData.categoryId}
+                            onChange={(event, newValue) => setProductData((prev) => ({ ...prev, categoryId: newValue }))}>
                             {categories.map((cat) => (
                                 <Option key={cat.id} value={cat.id}>
                                     {cat.name}
