@@ -22,6 +22,7 @@ function Companies() {
     const fetchCompanies = async () => {
         const response = await getCompanies();
         setCompanies(response.data);
+        
     };
 
     useEffect(() => {
@@ -62,14 +63,14 @@ function Companies() {
     const handleDelete = async (id) => {
         try {
             const response = await deleteCompany(id);
-            if (response.status === 200) {
+            
+            if (response.status === 204) {
                 Swal.fire({
                     title: 'Compañía eliminada con éxito',
                     icon: 'success',
                     timer: 1500,
                     showConfirmButton: false,
                 });
-                fetchCompanies();
             }
         } catch {
             Swal.fire({
@@ -78,6 +79,8 @@ function Companies() {
                 timer: 1500,
                 showConfirmButton: false,
             });
+        } finally{
+            fetchCompanies()
         }
     };
 
