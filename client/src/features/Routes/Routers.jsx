@@ -13,7 +13,7 @@ import Landing from '../Home/landing/Landing.jsx';
 import CategoriesHome from '../Home/Categories/CategoriesHome.jsx';
 import Login from '../login/Login.jsx';
 import ProductsCategory from '@/features/Home/Categories/components/ProductsCategory.jsx';
-import Footer from '@/features/Global/Footer.jsx';
+
 function Routers() {
     return (
         <>

@@ -1,5 +1,4 @@
 import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { Button, List, ListItem, ListItemButton, ListItemContent } from '@mui/joy';
 import axios from 'axios';
 import { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
@@ -10,7 +9,6 @@ function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
-    // Verificar si el usuario está logueado y tiene el rol correcto
     if (!user || (role !== 1 && role !== 4)) {
         return <Navigate to='/' replace />;
     }
@@ -25,106 +23,56 @@ function Dashboard() {
         setIsOpen(!isOpen);
     };
 
+    const navItems = [
+        { to: '/', label: 'Inicio' },
+        { to: '', label: 'Usuarios' },
+        { to: 'Roles', label: 'Roles' },
+        { to: 'Company', label: 'Compañía', show: role === 1 },
+        { to: 'Products', label: 'Productos' },
+        { to: 'Categories', label: 'Categorías' },
+    ];
+
     return (
-        <div className='flex min-h-screen'>
+        <div className='flex min-h-screen bg-neutral-100'>
             {/* Mobile Toggle Button */}
-            <button 
+            <button
                 onClick={toggleSidebar}
                 className='lg:hidden fixed top-4 left-4 z-50 p-2 bg-black/80 rounded-md'
-                aria-label='Toggle sidebar'
-            >
-                {isOpen ? (
-                    <HiX size={24} color='white' />
-                ) : (
-                    <HiMenu size={24} color='white' />
-                )}
+                aria-label='Toggle sidebar'>
+                {isOpen ? <HiX size={24} color='white' /> : <HiMenu size={24} color='white' />}
             </button>
 
             {/* Sidebar */}
-            <div 
-                className={`fixed lg:static w-[300px] h-screen bg-black flex flex-col transition-all duration-300 z-40
-                    ${isOpen ? 'left-0' : '-left-full'} lg:left-0`}
-            >
-                <h2 className='text-3xl text-center font-semibold text-white py-4'>Dashboard</h2>
-                <List className='flex-1 overflow-y-auto'>
-                    <div className='flex flex-col justify-evenly gap-2 text-xl py-2 pl-6 h-full'>
-                        <Link to='/' onClick={() => setIsOpen(false)}>
-                            <ListItem>
-                                <ListItemButton>
-                                    <ListItemContent sx={{ color: 'gray', '&:hover': { color: 'white' } }}>
-                                        Inicio
-                                    </ListItemContent>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                        <Link to='' onClick={() => setIsOpen(false)}>
-                            <ListItem>
-                                <ListItemButton>
-                                    <ListItemContent sx={{ color: 'gray', '&:hover': { color: 'white' } }}>
-                                        Usuarios
-                                    </ListItemContent>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                        <Link to='Roles' onClick={() => setIsOpen(false)}>
-                            <ListItem>
-                                <ListItemButton>
-                                    <ListItemContent sx={{ color: 'gray', '&:hover': { color: 'white' } }}>
-                                        Roles
-                                    </ListItemContent>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                        {role === 1 && (
-                            <Link to='Company' onClick={() => setIsOpen(false)}>
-                                <ListItem>
-                                    <ListItemButton>
-                                        <ListItemContent sx={{ color: 'gray', '&:hover': { color: 'white' } }}>
-                                            Compañía
-                                        </ListItemContent>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
-                        )}
-                        <Link to='Products' onClick={() => setIsOpen(false)}>
-                            <ListItem>
-                                <ListItemButton>
-                                    <ListItemContent sx={{ color: 'gray', '&:hover': { color: 'white' } }}>
-                                        Productos
-                                    </ListItemContent>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                        <Link to='Categories' onClick={() => setIsOpen(false)}>
-                            <ListItem>
-                                <ListItemButton>
-                                    <ListItemContent sx={{ color: 'gray', '&:hover': { color: 'white' } }}>
-                                        Categorías
-                                    </ListItemContent>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </div>
-                </List>
-                <Button
+            <aside
+                className={`fixed lg:static w-72 h-screen bg-black text-white flex flex-col z-40 transition-all duration-300 ${
+                    isOpen ? 'left-0' : '-left-full'
+                } lg:left-0`}>
+                <h2 className='text-3xl font-bold text-center py-6 border-b border-white/20'>Dashboard</h2>
+                <nav className='flex-1 p-6 overflow-y-auto space-y-2'>
+                    {navItems.map(
+                        ({ to, label, show = true }) =>
+                            show && (
+                                <Link
+                                    key={label}
+                                    to={to}
+                                    onClick={() => setIsOpen(false)}
+                                    className='block px-4 py-2 text-lg text-gray-300 hover:text-white hover:bg-white/10 rounded transition'>
+                                    {label}
+                                </Link>
+                            )
+                    )}
+                </nav>
+                <button
                     onClick={logout}
-                    sx={{
-                        position: 'sticky',
-                        bottom: '1rem',
-                        margin: '0 auto',
-                        width: '80%',
-                        mb: 2,
-                    }}
-                    color='danger'
-                >
+                    className='bg-red-600 hover:bg-red-700 text-white font-semibold mx-6 mb-6 py-2 rounded transition'>
                     Cerrar Sesión
-                </Button>
-            </div>
+                </button>
+            </aside>
 
             {/* Main Content */}
-            <div className='flex-1 overflow-x-hidden'>
+            <main className='flex-1 overflow-x-hidden'>
                 <Outlet />
-            </div>
+            </main>
         </div>
     );
 }

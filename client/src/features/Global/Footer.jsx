@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer() {
     return (
-        <footer className='bg-black text-white py-8 px-6 '>
+        <footer className='bg-purple-600 text-white py-8 px-6'>
             <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8'>
-                {/*    <!-- Información de la empresa --> */}
+                {/* Información de la empresa */}
                 <div>
                     <h2 className='text-xl font-semibold text-sky-300 mb-2'>Caninos SABS</h2>
                     <p className='text-sm text-gray-300'>
@@ -13,7 +13,7 @@ function Footer() {
                     </p>
                 </div>
 
-                {/*   <!-- Navegación rápida --> */}
+                {/* Navegación rápida */}
                 <div>
                     <h3 className='text-lg font-medium text-sky-300 mb-2'>Enlaces rápidos</h3>
                     <ul className='space-y-1 text-sm text-gray-300'>
@@ -45,7 +45,7 @@ function Footer() {
                     </ul>
                 </div>
 
-                {/* <!-- Contacto o redes sociales --> */}
+                {/* Contacto o redes sociales */}
                 <div>
                     <h3 className='text-lg font-medium text-sky-300 mb-2'>Contáctanos</h3>
                     <p className='text-sm text-gray-300'>Correo: contacto@caninossabs.com</p>

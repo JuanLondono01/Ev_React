@@ -17,56 +17,56 @@ function Navbar() {
     };
 
     return (
-        <nav className='bg-black text-white sticky top-0 z-50 shadow-lg'>
-            <div className='flex justify-between items-center px-6 md:px-20 h-16'>
+        <nav className='bg-gradient-to-r from-purple-600 to-purple-700 text-white sticky top-0 z-50 shadow-xl'>
+            <div className='flex justify-between items-center px-6 md:px-20 py-4'>
                 <Link
                     to='/'
-                    className='text-2xl uppercase font-bold hover:text-sky-300 transition duration-200 flex items-center gap-4 lg:text-2xl md:text-xl'>
-                    <img className='h-10' src='../../../public/icon-white.svg' alt='Logo' />
+                    className='text-3xl font-extrabold text-white hover:text-sky-300 transition duration-300 flex items-center gap-4'>
+                    <img className='h-12' src='../public/icons8-dog-park-96.png' alt='Logo' />
                     Caninos SABS
                 </Link>
 
                 {/* Botón hamburguesa (visible en mobile) */}
                 <button
-                    className='md:hidden text-white text-3xl'
+                    className='md:hidden text-white text-4xl transition duration-200'
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label='Toggle menu'>
                     {isOpen ? <HiX /> : <HiMenu />}
                 </button>
 
                 {/* Menú normal (desktop) */}
-                <ul className='hidden md:flex gap-10 text-lg items-center lg:text-xl md'>
+                <ul className='hidden md:flex gap-12 items-center text-lg'>
                     <li>
-                        <Link className='hover:text-sky-300 transition' to='/'>
+                        <Link className='hover:text-sky-300 transition duration-300' to='/'>
                             Inicio
                         </Link>
                     </li>
                     <li>
-                        <Link className='hover:text-sky-300 transition' to='/AboutUs'>
+                        <Link className='hover:text-sky-300 transition duration-300' to='/AboutUs'>
                             Quiénes Somos
                         </Link>
                     </li>
                     <li>
-                        <Link className='hover:text-sky-300 transition' to='/Products'>
+                        <Link className='hover:text-sky-300 transition duration-300' to='/Products'>
                             Nuestros Productos
                         </Link>
                     </li>
                     <li>
-                        <Link className='hover:text-sky-300 transition' to='/Categories'>
+                        <Link className='hover:text-sky-300 transition duration-300' to='/Categories'>
                             Nuestras Categorías
                         </Link>
                     </li>
                     <li>
                         {!user ? (
-                            <Link className='hover:text-sky-300 transition' to='/Login'>
+                            <Link className='hover:text-sky-300 transition duration-300' to='/Login'>
                                 Login
                             </Link>
                         ) : role === 1 || role === 4 ? (
-                            <Link className='hover:text-sky-300 transition' to='/Dashboard'>
+                            <Link className='hover:text-sky-300 transition duration-300' to='/Dashboard'>
                                 Dashboard
                             </Link>
                         ) : (
-                            <Button onClick={logout} color='danger' size='sm'>
+                            <Button onClick={logout} color='danger' size='sm' className='transition duration-300'>
                                 Cerrar Sesión
                             </Button>
                         )}
@@ -76,7 +76,7 @@ function Navbar() {
 
             {/* Menú desplegable (mobile) */}
             {isOpen && (
-                <ul className='md:hidden flex flex-col gap-4 px-6 py-4 bg-black text-white text-base shadow-md'>
+                <ul className='md:hidden flex flex-col gap-6 px-6 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-base shadow-lg'>
                     <li>
                         <Link onClick={() => setIsOpen(false)} to='/'>
                             Inicio
@@ -113,7 +113,8 @@ function Navbar() {
                                     logout();
                                 }}
                                 color='danger'
-                                size='sm'>
+                                size='sm'
+                                className='transition duration-300'>
                                 Cerrar Sesión
                             </Button>
                         )}
