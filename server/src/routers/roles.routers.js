@@ -5,18 +5,18 @@ const verifyRole = require('../middleware/verifyRole.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
 // Crear rol
-router.post('/', verifyToken, verifyRole([1, 4]), roleController.createRole);
+router.post('/', verifyToken, verifyRole([1, 2]), roleController.createRole);
 
 // Obtener todos los roles
-router.get('/', verifyToken, verifyRole([1, 4]), roleController.getAllRoles);
+router.get('/', verifyToken, verifyRole([1, 2]), roleController.getAllRoles);
 
 // Obtener rol por ID
-router.get('/:id', verifyToken, verifyRole([1, 4]), roleController.getRoleById);
+router.get('/:id', verifyToken, verifyRole([1, 2]), roleController.getRoleById);
 
 // Actualizar rol
-router.put('/:id', verifyToken, verifyRole([1, 4]), roleController.updateRole);
+router.put('/:id', verifyToken, verifyRole([1, 2]), roleController.updateRole);
 
 // Eliminar rol
-router.delete('/:id', verifyToken, verifyRole([1, 4]), roleController.deleteRole);
+router.delete('/:id', verifyToken, verifyRole([1, 2]), roleController.deleteRole);
 
 module.exports = router;

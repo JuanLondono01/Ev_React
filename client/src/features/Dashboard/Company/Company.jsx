@@ -2,8 +2,8 @@ import { addCompany, deleteCompany, getCompanies } from '@/features/Dashboard/Co
 import EditCompanyModal from '@/features/Dashboard/Company/Components/EditCompany.jsx';
 import { Button, Input, Modal, ModalDialog, ModalClose, Typography, Table } from '@mui/joy';
 import React, { useEffect, useState } from 'react';
-import { CiEdit, CiTrash} from 'react-icons/ci';
-import { FaEye } from "react-icons/fa";
+import { CiEdit, CiTrash } from 'react-icons/ci';
+import { FaEye } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function Companies() {
@@ -32,7 +32,7 @@ function Companies() {
         e.preventDefault();
         try {
             const response = await addCompany(companyData);
-            
+
             if (response.status === 201) {
                 Swal.fire({
                     title: 'Compañía agregada con éxito',
@@ -69,7 +69,6 @@ function Companies() {
                     timer: 1500,
                     showConfirmButton: false,
                 });
-                fetchCompanies();
             }
         } catch {
             Swal.fire({
@@ -78,6 +77,8 @@ function Companies() {
                 timer: 1500,
                 showConfirmButton: false,
             });
+        } finally {
+            fetchCompanies();
         }
     };
 
@@ -95,7 +96,7 @@ function Companies() {
             </div>
 
             {/* Tabla de compañías para pantallas grandes */}
-            <div className="overflow-x-auto hidden sm:block">
+            <div className='overflow-x-auto hidden sm:block'>
                 <Table variant='outlined' size='lg' stripe='odd' hoverRow stickyHeader className='min-w-full'>
                     <thead>
                         <tr>
@@ -142,29 +143,19 @@ function Companies() {
             </div>
 
             {/* Tabla para móviles con solo el nombre y un ícono de ojo */}
-            <div className="sm:hidden mt-6">
+            <div className='sm:hidden mt-6'>
                 {companies.map((company) => (
-                    <div key={company.id} className="flex justify-between items-center border-t py-4">
+                    <div key={company.id} className='flex justify-between items-center border-t py-4'>
                         <span>{company.name}</span>
-                        <div className="flex gap-4">
-                            <FaEye
-                                size={24}
-                                color="green"
-                                cursor="pointer"
-                                onClick={() => handleViewClick(company)}
-                            />
+                        <div className='flex gap-4'>
+                            <FaEye size={24} color='green' cursor='pointer' onClick={() => handleViewClick(company)} />
                             <CiEdit
-                                color="blue"
+                                color='blue'
                                 size={24}
-                                cursor="pointer"
+                                cursor='pointer'
                                 onClick={() => handleEditClick(company.id)}
                             />
-                            <CiTrash
-                                color="red"
-                                size={24}
-                                cursor="pointer"
-                                onClick={() => handleDelete(company.id)}
-                            />
+                            <CiTrash color='red' size={24} cursor='pointer' onClick={() => handleDelete(company.id)} />
                         </div>
                     </div>
                 ))}
@@ -203,11 +194,21 @@ function Companies() {
                                 Detalles de {viewCompany.name}
                             </Typography>
                             <div className='mt-4'>
-                                <p><strong>ID:</strong> {viewCompany.id}</p>
-                                <p><strong>Dirección:</strong> {viewCompany.address}</p>
-                                <p><strong>Teléfono:</strong> {viewCompany.phone}</p>
-                                <p><strong>Correo:</strong> {viewCompany.email}</p>
-                                <p><strong>NIT:</strong> {viewCompany.nit}</p>
+                                <p>
+                                    <strong>ID:</strong> {viewCompany.id}
+                                </p>
+                                <p>
+                                    <strong>Dirección:</strong> {viewCompany.address}
+                                </p>
+                                <p>
+                                    <strong>Teléfono:</strong> {viewCompany.phone}
+                                </p>
+                                <p>
+                                    <strong>Correo:</strong> {viewCompany.email}
+                                </p>
+                                <p>
+                                    <strong>NIT:</strong> {viewCompany.nit}
+                                </p>
                             </div>
                         </>
                     )}

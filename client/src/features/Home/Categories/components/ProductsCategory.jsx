@@ -16,8 +16,8 @@ function ProductsCategory() {
     }, [categoryId]);
 
     return (
-        <div className='py-16 px-6 bg-gray-50 min-h-screen'>
-            <h2 className='text-4xl font-extrabold text-center text-teal-700 mb-10'>
+        <div className='py-16 px-6 bg-gray-50 min-h-screen  bg-gradient-to-t from-purple-300 to-purple-700'>
+            <h2 className='text-4xl font-extrabold text-center text-white mb-10'>
                 Productos de la Categoría
             </h2>
             {products?.length > 0 ? (
@@ -38,7 +38,7 @@ function ProductsCategory() {
                                     {product.description || 'Sin descripción disponible.'}
                                 </p>
                                 <div className='mt-4'>
-                                    <p className='text-teal-600 font-bold text-lg'>${product.price}</p>
+                                    <p className='text-blue-400 font-bold text-lg'>${product.price}</p>
                                     <p className='text-sm text-gray-500'>Stock: {product.stock}</p>
                                 </div>
                             </div>

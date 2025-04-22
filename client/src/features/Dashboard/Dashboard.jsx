@@ -9,7 +9,7 @@ function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
-    if (!user || (role !== 1 && role !== 4)) {
+    if (!user || (role !== 1 && role !== 2)) {
         return <Navigate to='/' replace />;
     }
 

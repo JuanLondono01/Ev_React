@@ -57,35 +57,37 @@ function Login() {
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className='w-full max-w-md mx-auto mt-20 border flex flex-col gap-6 p-8 rounded-md shadow-md bg-white md:mb-73 lg:mb-[10.55rem] mb-20'>
-            <h1 className='text-4xl text-center font-semibold'>Iniciar Sesión</h1>
-            <Input
-                name='email'
-                value={formData.email}
-                variant='soft'
-                placeholder='Correo electrónico'
-                type='email'
-                size='lg'
-                onChange={handleChange}
-                required
-            />
-            <Input
-                name='password'
-                value={formData.password}
-                variant='soft'
-                placeholder='Contraseña'
-                type='password'
-                size='lg'
-                onChange={handleChange}
-                required
-            />
-            {isError && <p className='text-red-500 text-center'>{error}</p>}
-            <Button type='submit' loading={loading} disabled={loading}>
-                {loading ? 'Ingresando...' : 'Iniciar Sesión'}
-            </Button>
-        </form>
+        <div className='h-screen grid place-content-center'>
+            <form
+                onSubmit={handleSubmit}
+                className='w-full max-w-md mx-auto mt-20  flex flex-col gap-6 p-8 rounded-md shadow-lg bg-white md:mb-73 lg:mb-[10.55rem] mb-20'>
+                <h1 className='text-4xl text-center font-semibold'>Iniciar Sesión</h1>
+                <Input
+                    name='email'
+                    value={formData.email}
+                    variant='soft'
+                    placeholder='Correo electrónico'
+                    type='email'
+                    size='lg'
+                    onChange={handleChange}
+                    required
+                />
+                <Input
+                    name='password'
+                    value={formData.password}
+                    variant='soft'
+                    placeholder='Contraseña'
+                    type='password'
+                    size='lg'
+                    onChange={handleChange}
+                    required
+                />
+                {isError && <p className='text-red-500 text-center'>{error}</p>}
+                <Button type='submit' loading={loading} disabled={loading}>
+                    {loading ? 'Ingresando...' : 'Iniciar Sesión'}
+                </Button>
+            </form>
+        </div>
     );
 }
 

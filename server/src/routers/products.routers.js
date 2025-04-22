@@ -12,7 +12,7 @@ const verifyRole = require('../middleware/verifyRole.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
 // Crear un producto
-router.post('/', verifyToken, verifyRole([1, 4]), createProduct);
+router.post('/', verifyToken, verifyRole([1, 2]), createProduct);
 
 // Obtener todos los productos
 router.get('/', getAllProducts);
@@ -24,9 +24,9 @@ router.get('/:id', getProductById);
 router.get('/category/:categoryId', getProductsByCategory);
 
 // Actualizar un producto
-router.put('/:id', verifyToken, verifyRole([1, 4]), updateProduct);
+router.put('/:id', verifyToken, verifyRole([1, 2]), updateProduct);
 
 // Eliminar un producto
-router.delete('/:id', verifyToken, verifyRole([1, 4]), deleteProduct);
+router.delete('/:id', verifyToken, verifyRole([1, 2]), deleteProduct);
 
 module.exports = router;

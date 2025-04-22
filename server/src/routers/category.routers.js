@@ -11,7 +11,7 @@ const verifyRole = require('../middleware/verifyRole.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
 // Ruta para crear una categoría
-router.post('/', verifyToken, verifyRole([1, 4]), createCategory);
+router.post('/', verifyToken, verifyRole([1, 2]), createCategory);
 
 // Ruta para obtener todas las categorías
 router.get('/', getAllCategories);
@@ -20,9 +20,9 @@ router.get('/', getAllCategories);
 router.get('/:id', getCategoryById);
 
 // Ruta para actualizar una categoría
-router.put('/:id', verifyToken, verifyRole([1, 4]), updateCategory);
+router.put('/:id', verifyToken, verifyRole([1, 2]), updateCategory);
 
 // Ruta para eliminar una categoría
-router.delete('/:id', verifyToken, verifyRole([1, 4]), deleteCategory);
+router.delete('/:id', verifyToken, verifyRole([1, 2]), deleteCategory);
 
 module.exports = router;

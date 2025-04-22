@@ -19,8 +19,8 @@ function Categories() {
     }, []);
 
     return (
-        <div className='min-h-screen bg-gray-50 flex flex-col py-20 px-6'>
-            <h1 className='capitalize text-4xl font-extrabold text-center mb-12 text-teal-700'>
+        <div className='min-h-screen bg-gradient-to-t from-purple-300 to-purple-700 flex flex-col py-20 px-6'>
+            <h1 className='capitalize text-4xl font-extrabold text-center mb-12 text-white'>
                 Categorías de Productos
             </h1>
             <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
@@ -35,7 +35,7 @@ function Categories() {
                             <div className='flex justify-center'>
                                 <Link
                                     to={`Products/${category.id}`}
-                                    className='bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-500 transition duration-300'
+                                    className='bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 transition duration-300'
                                 >
                                     Explorar
                                 </Link>

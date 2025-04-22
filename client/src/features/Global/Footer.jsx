@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
@@ -18,29 +19,24 @@ function Footer() {
                     <h3 className='text-lg font-medium text-sky-300 mb-2'>Enlaces rápidos</h3>
                     <ul className='space-y-1 text-sm text-gray-300'>
                         <li>
-                            <a href='#inicio' className='hover:text-sky-300 transition'>
+                            <Link to={'/'} className='hover:text-sky-300 transition'>
                                 Inicio
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href='#productos' className='hover:text-sky-300 transition'>
+                            <Link to={'/Products'} className='hover:text-sky-300 transition'>
                                 Productos
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href='#servicios' className='hover:text-sky-300 transition'>
-                                Servicios
-                            </a>
-                        </li>
-                        <li>
-                            <a href='#categorias' className='hover:text-sky-300 transition'>
+                            <Link to={'/Categories'} className='hover:text-sky-300 transition'>
                                 Categorías
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href='#nosotros' className='hover:text-sky-300 transition'>
+                            <Link to={'/AboutUs'} className='hover:text-sky-300 transition'>
                                 Quiénes somos
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

@@ -36,7 +36,7 @@ function Products() {
     const fetchProducts = async () => {
         const response = await getProducts();
         console.log(response.data.products);
-        
+
         setProducts(response.data.products);
     };
 
@@ -48,7 +48,6 @@ function Products() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            
             const response = await addProduct(productData);
 
             if (response.status === 201) {
@@ -59,8 +58,6 @@ function Products() {
                     showConfirmButton: false,
                 });
                 setProductData({ name: '', price: '', description: '', stock: '', category: '' });
-                setAddOpen(false);
-                fetchProducts();
             }
         } catch {
             Swal.fire({
@@ -69,6 +66,9 @@ function Products() {
                 timer: 1500,
                 showConfirmButton: false,
             });
+        } finally {
+            setAddOpen(false);
+            fetchProducts();
         }
     };
 
@@ -200,7 +200,9 @@ function Products() {
                             name='category'
                             placeholder='Categoría'
                             value={productData.categoryId}
-                            onChange={(event, newValue) => setProductData((prev) => ({ ...prev, categoryId: newValue }))}>
+                            onChange={(event, newValue) =>
+                                setProductData((prev) => ({ ...prev, categoryId: newValue }))
+                            }>
                             {categories.map((cat) => (
                                 <Option key={cat.id} value={cat.id}>
                                     {cat.name}

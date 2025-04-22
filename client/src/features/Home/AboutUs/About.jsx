@@ -70,8 +70,8 @@ const AboutUs = () => {
                     {/* Misión y Visión */}
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto mb-20'>
                         <div className='bg-sky-300/80 p-6 rounded-xl shadow-xl'>
-                            <h4 className='text-xl font-bold mb-2 text-black'>Nuestra Misión</h4>
-                            <p className='text-base text-black'>
+                            <h4 className='text-xl font-bold mb-2 text-white'>Nuestra Misión</h4>
+                            <p className='text-base text-white'>
                                 Brindar productos y servicios de alta calidad que contribuyan al bienestar y la
                                 felicidad de los perros, fortaleciendo el vínculo entre ellos y sus familias. Nos
                                 comprometemos a innovar continuamente en el cuidado canino y ser un referente ético en la
@@ -79,8 +79,8 @@ const AboutUs = () => {
                             </p>
                         </div>
                         <div className='bg-sky-300/80 p-6 rounded-xl shadow-xl'>
-                            <h4 className='text-xl font-bold mb-2 text-black'>Nuestra Visión</h4>
-                            <p className='text-base text-black'>
+                            <h4 className='text-xl font-bold mb-2 text-white'>Nuestra Visión</h4>
+                            <p className='text-base text-white'>
                                 Ser la empresa líder en soluciones integrales para el cuidado canino en Latinoamérica,
                                 reconocida por su compromiso ético, innovación y amor por los animales. Queremos llegar a
                                 cada rincón de la región, llevando nuestros productos y servicios a todas las familias
@@ -90,7 +90,7 @@ const AboutUs = () => {
                     </div>
 
                     {/* Equipo */}
-                    <h3 className='text-2xl font-semibold mb-8 text-black'>Nuestro Equipo</h3>
+                    <h3 className='text-2xl font-semibold mb-8 text-white'>Nuestro Equipo</h3>
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12'>
                         {teamMembers.map((member, index) => (
                             <div

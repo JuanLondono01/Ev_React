@@ -17,7 +17,7 @@ function Navbar() {
     };
 
     return (
-        <nav className='bg-gradient-to-r from-purple-600 to-purple-700 text-white sticky top-0 z-50 shadow-xl'>
+        <nav className='bg-gradient-to-r from-purple-600 to-purple-700 text-white sticky top-0 z-50 shadow-xl shadow-purple-500/90'>
             <div className='flex justify-between items-center px-6 md:px-20 py-4'>
                 <Link
                     to='/'
@@ -61,7 +61,7 @@ function Navbar() {
                             <Link className='hover:text-sky-300 transition duration-300' to='/Login'>
                                 Login
                             </Link>
-                        ) : role === 1 || role === 4 ? (
+                        ) : role === 1 || role === 2 ? (
                             <Link className='hover:text-sky-300 transition duration-300' to='/Dashboard'>
                                 Dashboard
                             </Link>
@@ -102,7 +102,7 @@ function Navbar() {
                             <Link onClick={() => setIsOpen(false)} to='/Login'>
                                 Login
                             </Link>
-                        ) : role === 1 || role === 4 ? (
+                        ) : role === 1 || role === 2 ? (
                             <Link onClick={() => setIsOpen(false)} to='/Dashboard'>
                                 Dashboard
                             </Link>
