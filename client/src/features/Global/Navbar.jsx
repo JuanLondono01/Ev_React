@@ -17,7 +17,7 @@ function Navbar() {
     };
 
     return (
-        <nav className='bg-gradient-to-r from-purple-600 to-purple-700 text-white sticky top-0 z-50 shadow-xl shadow-purple-500/90'>
+        <nav className='bg-gradient-to-r from-purple-600 to-purple-700 text-white sticky top-0 z-50 shadow-xl shadow-purple-500/30'>
             <div className='flex justify-between items-center px-6 md:px-20 py-4'>
                 <Link
                     to='/'
